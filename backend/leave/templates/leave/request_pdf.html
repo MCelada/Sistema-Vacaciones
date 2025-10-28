@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Leave Request PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { font-size: 1.5em; margin-bottom: 1em; }
+        .section { margin-bottom: 1em; }
+        .label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">Leave Request</div>
+    <div class="section">
+        <span class="label">Employee:</span> {{ request.employee.full_name }}<br>
+        <span class="label">Position:</span> {{ request.employee.position }}<br>
+        <span class="label">Office:</span> {{ request.employee.office }}<br>
+    </div>
+    <div class="section">
+        <span class="label">Start Date:</span> {{ request.start_date }}<br>
+        <span class="label">End Date:</span> {{ request.end_date }}<br>
+        <span class="label">Type:</span> {% if request.is_cct_leave %}CCT{% else %}Regular{% endif %}<br>
+        <span class="label">Status:</span> {{ request.status }}<br>
+    </div>
+    <div class="section">
+        <span class="label">Days Deducted:</span><br>
+        CCT: {{ request.cct_days_deducted }}<br>
+        Business Days: {{ request.workdays_deducted }}<br>
+        Holidays: {{ request.holiday_leave_deducted }}<br>
+    </div>
+</body>
+</html>
